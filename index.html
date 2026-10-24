@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KITA Indonesia | Koalisi Industri untuk Talenta anak Bangsa</title>
+  <meta name="description" content="KITA Indonesia adalah koalisi industri dan lembaga nirlaba yang peduli pada pendidikan Indonesia, bekerja bersama menyiapkan talenta masa depan.">
+  <meta name="theme-color" content="#E93323">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="KITA Indonesia | Koalisi Industri untuk Talenta anak Bangsa">
+  <meta property="og:description" content="Industri dan lembaga nirlaba membangun talenta anak bangsa bersama.">
+  <!-- Ganti dengan alamat lengkap (https://...) setelah website punya domain. -->
+  <meta property="og:image" content="assets/img/hero.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <style>
+    :root {
+      --merah: #E93323;
+      --merah-tombol: #D12B1E;
+      --merah-gelap: #8F1A10;
+      --putih: #FFFFFF;
+      --abu-muda: #F6F6F6;
+      --teks: #1F1F1F;
+      --teks-lembut: #4A4A4A;
+      --font-judul: "Plus Jakarta Sans", system-ui, sans-serif;
+      --font-isi: "Inter", system-ui, sans-serif;
+      --radius-kartu: 16px;
+      --radius-tombol: 10px;
+      --tinggi-header: 72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--tinggi-header) + 16px); -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--putih); color: var(--teks); font-family: var(--font-isi); font-size: 1rem; line-height: 1.65; }
+    img { display: block; max-width: 100%; height: auto; }
+    h1, h2, h3 { font-family: var(--font-judul); margin: 0; line-height: 1.15; letter-spacing: -0.015em; }
+    p { margin: 0; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--teks); outline-offset: 3px; }
+    .on-dark :focus-visible, .footer :focus-visible { outline-color: var(--putih); }
+
+    .container { width: min(1160px, 100% - 32px); margin-inline: auto; }
+    .section { padding-block: clamp(56px, 8vw, 104px); }
+    .section:empty { display: none; }
+    .section.abu { background: var(--abu-muda); }
+    .section-title { font-size: clamp(1.7rem, 3.6vw, 2.5rem); font-weight: 800; max-width: 22ch; text-wrap: balance; }
+    .garis { height: 6px; background: linear-gradient(var(--merah) 0 50%, var(--putih) 50% 100%); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px; border-radius: var(--radius-tombol); border: 2px solid transparent; font: 600 1rem/1.2 var(--font-judul); text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+    .btn-primary { background: var(--merah-tombol); color: var(--putih); }
+    .btn-primary:hover { background: var(--merah-gelap); }
+    .btn-outline { border-color: var(--putih); color: var(--putih); background: transparent; }
+    .btn-outline:hover { background: var(--putih); color: var(--merah-gelap); }
+    .on-dark .btn-primary { background: var(--putih); color: var(--merah-gelap); }
+    .on-dark .btn-primary:hover { background: var(--abu-muda); }
+
+    .card { background: var(--putih); border-radius: var(--radius-kartu); box-shadow: 0 1px 2px rgba(31, 31, 31, .06), 0 8px 24px rgba(31, 31, 31, .07); padding: 28px; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--putih); border-bottom: 3px solid var(--merah); }
+    .site-header .container { display: flex; align-items: center; justify-content: space-between; height: var(--tinggi-header); gap: 16px; }
+    .brand img { height: 42px; width: auto; }
+    .nav-menu { display: flex; align-items: center; gap: 28px; }
+    .nav-menu ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+    .nav-menu a:not(.btn) { text-decoration: none; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; }
+    .nav-menu a:not(.btn):hover { border-bottom-color: var(--merah); }
+    .nav-toggle { display: none; width: 44px; height: 44px; border: 0; border-radius: var(--radius-tombol); background: transparent; cursor: pointer; padding: 0; color: var(--teks); }
+    .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { display: block; width: 24px; height: 2px; background: currentColor; margin-inline: auto; position: relative; transition: transform .2s, background-color .2s; }
+    .nav-toggle span::before, .nav-toggle span::after { content: ""; position: absolute; left: 0; }
+    .nav-toggle span::before { top: -7px; }
+    .nav-toggle span::after { top: 7px; }
+    .nav-toggle[aria-expanded="true"] span { background: transparent; }
+    .nav-toggle[aria-expanded="true"] span::before { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span::after { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 899px) {
+      .nav-toggle { display: block; }
+      .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--putih); padding: 8px 16px 20px; border-bottom: 3px solid var(--merah); box-shadow: 0 16px 24px rgba(31, 31, 31, .12); }
+      .nav-menu.open { display: flex; }
+      .nav-menu ul { flex-direction: column; gap: 0; }
+      .nav-menu a:not(.btn) { display: block; padding: 14px 4px; border-bottom: 1px solid var(--abu-muda); }
+      .nav-menu .btn { margin-top: 16px; }
+    }
+
+    /* Hero */
+    .hero { position: relative; isolation: isolate; overflow: hidden; background: var(--merah-gelap); color: var(--putih); }
+    .hero > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 70% 35%; }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(143, 26, 16, .94) 0%, rgba(143, 26, 16, .8) 45%, rgba(143, 26, 16, .22) 100%); }
+    .hero-inner { max-width: 660px; padding-block: clamp(72px, 12vw, 152px); }
+    .hero h1 { font-size: clamp(2.1rem, 5.4vw, 3.9rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
+    .hero p { margin-top: 20px; max-width: 52ch; font-size: clamp(1.05rem, 2vw, 1.25rem); color: rgba(255, 255, 255, .94); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+    @media (max-width: 899px) {
+      .hero > img { object-position: 78% 6%; }
+      .hero::before { background: linear-gradient(180deg, rgba(143, 26, 16, .9) 0%, rgba(143, 26, 16, .78) 55%, rgba(143, 26, 16, .45) 100%); }
+    }
+
+    /* Footer */
+    .footer { background: var(--merah-gelap); color: var(--putih); border-top: 4px solid var(--merah); padding-block: 56px 32px; }
+    .footer-grid { display: grid; gap: 40px; grid-template-columns: 1fr; }
+    .footer-brand img { height: 56px; width: auto; }
+    .footer-brand p { margin-top: 16px; max-width: 38ch; color: rgba(255, 255, 255, .88); }
+    .footer h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; }
+    .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .footer a { text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-note { margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .25); font-size: .9rem; color: rgba(255, 255, 255, .85); }
+    @media (min-width: 760px) {
+      .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+    }
+
+    .section-intro { margin-top: 14px; max-width: 60ch; color: var(--teks-lembut); font-size: 1.075rem; }
+    .checklist { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 12px; }
+    .checklist li { position: relative; padding-left: 34px; }
+    .checklist li::before { content: ""; position: absolute; left: 0; top: .3em; width: 20px; height: 20px; border-radius: 50%; background: var(--merah-tombol) center / 12px no-repeat url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M2.5 6.2l2.4 2.4 4.6-5' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>"); }
+
+    /* Tentang */
+    .tentang-grid { display: grid; gap: 40px; grid-template-columns: 1fr; margin-top: 8px; }
+    .tentang-teks > p { margin-top: 18px; max-width: 60ch; color: var(--teks-lembut); font-size: 1.075rem; }
+    .visi-misi { margin-top: 28px; padding: 20px 22px; border: 2px dashed var(--merah); border-radius: var(--radius-kartu); background: var(--abu-muda); }
+    .visi-misi h3 { font-size: 1.1rem; font-weight: 700; }
+    .visi-misi p { margin-top: 8px; color: var(--teks-lembut); }
+    .ketua { padding: 0; overflow: hidden; }
+    .ketua img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 20%; }
+    .ketua-info { padding: 20px 24px 24px; }
+    .ketua-nama { font: 700 1.2rem/1.2 var(--font-judul); }
+    .ketua-jabatan { margin-top: 4px; color: var(--teks-lembut); }
+    .dampak { margin-top: 56px; }
+    .dampak h3 { font-size: 1.25rem; font-weight: 700; }
+    .stats { display: grid; gap: 16px; margin-top: 20px; grid-template-columns: repeat(2, 1fr); }
+    .stat { padding: 24px 20px; }
+    .stat-angka { display: block; font: 800 clamp(1.9rem, 5vw, 3rem) / 1 var(--font-judul); letter-spacing: -0.02em; color: var(--merah-tombol); font-variant-numeric: tabular-nums; }
+    .stat-label { display: block; margin-top: 8px; font-weight: 500; }
+    .dampak-catatan { margin-top: 14px; font-size: .9rem; color: var(--teks-lembut); }
+
+    /* Program */
+    .program-grid { display: grid; gap: 20px; margin-top: 40px; }
+    .pilar h3 { font-size: 1.35rem; font-weight: 700; }
+    .pilar p { margin-top: 12px; color: var(--teks-lembut); }
+    .card-utama { background: var(--merah-tombol); color: var(--putih); padding: clamp(28px, 4vw, 44px); }
+    .card-utama h3 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+    .card-utama p { color: rgba(255, 255, 255, .94); }
+    .card-utama ul { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 10px; font-weight: 500; }
+    .card-utama li { position: relative; padding-left: 26px; }
+    .card-utama li::before { content: ""; position: absolute; left: 0; top: .8em; width: 14px; height: 2px; background: var(--putih); }
+
+    /* Manfaat dan kategori anggota */
+    .dua-kolom { display: grid; gap: 20px; margin-top: 40px; }
+    .dua-kolom h3 { font-size: 1.3rem; font-weight: 700; }
+    .kategori p { margin-top: 12px; color: var(--teks-lembut); }
+    .kategori .btn { margin-top: 24px; }
+
+    @media (min-width: 760px) {
+      .dua-kolom { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 900px) {
+      .tentang-grid { grid-template-columns: 1.2fr .8fr; align-items: start; gap: 56px; }
+      .stats { grid-template-columns: repeat(4, 1fr); }
+      .program-grid { grid-template-columns: 1.15fr 1fr; }
+      .card-utama { grid-row: span 2; }
+    }
+
+    /* Galeri kegiatan */
+    .galeri { display: grid; gap: 16px; margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+    .galeri figure { margin: 0; border-radius: var(--radius-kartu); overflow: hidden; background: var(--abu-muda); }
+    .galeri img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .galeri figcaption { padding: 12px 16px 14px; font-size: .95rem; color: var(--teks-lembut); }
+
+    /* Mitra: placeholder sampai logo dan izin tampil tersedia */
+    .mitra-grid { display: grid; gap: 16px; margin-top: 40px; grid-template-columns: repeat(2, 1fr); }
+    .mitra-slot { display: grid; place-items: center; min-height: 110px; padding: 16px; border: 2px dashed #B8B8B8; border-radius: var(--radius-kartu); text-align: center; font-size: .95rem; color: var(--teks-lembut); }
+
+    /* Bergabung */
+    .pita { background: var(--merah-tombol); color: var(--putih); }
+    .pita .section-intro { color: rgba(255, 255, 255, .94); }
+    .gabung-grid { display: grid; gap: 32px; margin-top: 40px; }
+    .langkah { list-style: none; counter-reset: langkah; margin: 0; padding: 0; display: grid; gap: 20px; align-content: start; }
+    .langkah li { counter-increment: langkah; display: grid; grid-template-columns: 44px 1fr; gap: 2px 16px; align-items: start; }
+    .langkah li::before { content: counter(langkah); grid-row: span 2; width: 44px; height: 44px; border-radius: 50%; background: var(--putih); color: var(--merah-gelap); font: 800 1.2rem / 44px var(--font-judul); text-align: center; }
+    .langkah strong { font: 700 1.15rem / 1.3 var(--font-judul); }
+    .langkah span { color: rgba(255, 255, 255, .94); }
+    .gabung-kanan { display: grid; gap: 20px; align-content: start; }
+    .form-slot:empty { display: none; }
+    .form-slot { padding: 8px; }
+    .form-slot iframe { display: block; width: 100%; height: 720px; border: 0; border-radius: 10px; }
+    .kontak-langsung { color: var(--teks); }
+    .kontak-langsung h3 { font-size: 1.25rem; font-weight: 700; }
+    .kontak-langsung p { margin-top: 8px; color: var(--teks-lembut); }
+    .kontak-aksi { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .on-dark .card .btn-primary { background: var(--merah-tombol); color: var(--putih); }
+    .on-dark .card .btn-primary:hover { background: var(--merah-gelap); }
+    .on-dark .card :focus-visible { outline-color: var(--teks); }
+    .btn-garis { border-color: var(--merah-tombol); color: var(--merah-tombol); background: transparent; }
+    .btn-garis:hover { background: var(--merah-tombol); color: var(--putih); }
+
+    @media (min-width: 900px) {
+      .mitra-grid { grid-template-columns: repeat(4, 1fr); }
+      .gabung-grid { grid-template-columns: 1fr 1.05fr; gap: 56px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#hero" aria-label="KITA Indonesia, ke awal halaman">
+        <img src="assets/logo-merah.png" alt="KITA Indonesia" width="512" height="348">
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="menu-utama" aria-expanded="false" aria-label="Buka menu"><span></span></button>
+      <nav class="nav-menu" id="menu-utama" aria-label="Menu utama">
+        <ul>
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#keanggotaan">Keanggotaan</a></li>
+          <li><a href="#mitra">Mitra</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <a class="btn btn-primary" href="#gabung">Bergabung</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero on-dark">
+      <img src="assets/img/hero.webp" alt="Siswa SMK mengerumuni robot mBot sambil tersenyum saat belajar robotika" width="1280" height="960" fetchpriority="high">
+      <div class="container">
+        <div class="hero-inner">
+          <h1>Industri dan Pendidikan, Membangun Talenta Anak Bangsa Bersama</h1>
+          <p>KITA Indonesia adalah koalisi industri dan lembaga nirlaba yang peduli pada pendidikan Indonesia, bekerja bersama menyiapkan talenta masa depan.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#gabung">Bergabung</a>
+            <a class="btn btn-outline" href="#program">Lihat Program</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="garis" aria-hidden="true"></div>
+
+    <section id="tentang" class="section">
+      <div class="container">
+        <h2 class="section-title">Kolaborasi industri untuk pendidikan Indonesia</h2>
+        <div class="tentang-grid">
+          <div class="tentang-teks">
+            <p>KITA Indonesia (Koalisi Industri untuk Talenta anak Bangsa) adalah wadah kolaborasi industri dan lembaga nirlaba yang peduli pada pendidikan Indonesia.</p>
+            <ul class="checklist">
+              <li>Talenta yang disiapkan bersama lewat magang, pelatihan, dan sertifikasi</li>
+              <li>Dukungan nyata untuk pendidikan melalui beasiswa, CSR, dan hibah</li>
+              <li>Kajian dan masukan untuk kebijakan pendidikan</li>
+            </ul>
+            <div class="visi-misi" id="visi-misi">
+              <h3>Visi dan misi</h3>
+              <p>DRAF: teks visi dan misi menunggu persetujuan pengurus KITA Indonesia.</p>
+            </div>
+          </div>
+          <div class="card ketua">
+            <img src="assets/img/ketua.webp" alt="Timmy Theopelus, Ketua Yayasan, tersenyum di depan layar merah" width="1280" height="853" loading="lazy">
+            <div class="ketua-info">
+              <p class="ketua-nama">Timmy Theopelus</p>
+              <p class="ketua-jabatan">Ketua Yayasan</p>
+            </div>
+          </div>
+        </div>
+        <div class="dampak">
+          <h3>Jangkauan dampak</h3>
+          <div class="stats">
+            <div class="card stat"><strong class="stat-angka" data-count="1408">1.408</strong><span class="stat-label">SMK</span></div>
+            <div class="card stat"><strong class="stat-angka" data-count="12">12</strong><span class="stat-label">Universitas</span></div>
+            <div class="card stat"><strong class="stat-angka" data-count="28325">28.325</strong><span class="stat-label">Siswa</span></div>
+            <div class="card stat"><strong class="stat-angka" data-count="12223">12.223</strong><span class="stat-label">Guru</span></div>
+          </div>
+          <p class="dampak-catatan">Periode dan sumber data: menyusul.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="program" class="section abu">
+      <div class="container">
+        <h2 class="section-title">Tiga pilar program KITA Indonesia</h2>
+        <p class="section-intro">Prioritas utama kami adalah menyiapkan talenta bersama, ditopang dukungan untuk pendidikan serta riset dan kebijakan.</p>
+        <div class="program-grid">
+          <article class="card pilar card-utama">
+            <h3>Talenta Bersama</h3>
+            <p>Industri dan sekolah atau kampus menyiapkan talenta bersama, supaya kompetensi lulusan sejalan dengan kebutuhan dunia kerja.</p>
+            <ul>
+              <li>Magang dan praktik kerja</li>
+              <li>Masukan kurikulum dari industri</li>
+              <li>Pelatihan dan sertifikasi</li>
+            </ul>
+          </article>
+          <article class="card pilar">
+            <h3>Dukungan Pendidikan</h3>
+            <p>Perusahaan dan lembaga nirlaba menyalurkan dukungan untuk pendidikan melalui beasiswa, program CSR, dan hibah yang terarah.</p>
+          </article>
+          <article class="card pilar">
+            <h3>Riset dan Kebijakan</h3>
+            <p>Kajian dan advokasi kebijakan pendidikan, agar kolaborasi industri dan pendidikan punya dasar data dan didengar pembuat kebijakan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="manfaat" class="section">
+      <div class="container">
+        <h2 class="section-title">Mengapa bergabung dengan KITA Indonesia</h2>
+        <div class="dua-kolom">
+          <article class="card">
+            <h3>Untuk Industri/Perusahaan</h3>
+            <ul class="checklist">
+              <li>Akses ke talenta dan jaringan sekolah serta kampus</li>
+              <li>Kesempatan menyelaraskan kompetensi dengan kebutuhan industri</li>
+              <li>Program CSR pendidikan yang terarah</li>
+              <li>Jejaring dengan sesama industri</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Untuk Lembaga Nirlaba</h3>
+            <ul class="checklist">
+              <li>Kolaborasi dengan industri</li>
+              <li>Jangkauan program yang lebih luas</li>
+              <li>Akses ke jaringan sekolah dan kampus</li>
+              <li>Peluang pendanaan dan kemitraan</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="keanggotaan" class="section abu">
+      <div class="container">
+        <h2 class="section-title">Kategori anggota</h2>
+        <p class="section-intro">KITA Indonesia terbuka untuk dua kategori anggota.</p>
+        <div class="dua-kolom">
+          <article class="card kategori">
+            <h3>Industri/Perusahaan</h3>
+            <p>Perusahaan dari sektor apa pun yang membutuhkan talenta dan peduli pada pendidikan Indonesia.</p>
+            <a class="btn btn-primary" href="#gabung">Bergabung sebagai industri</a>
+          </article>
+          <article class="card kategori">
+            <h3>Lembaga Nirlaba</h3>
+            <p>Yayasan dan organisasi nirlaba yang bergerak di bidang pendidikan.</p>
+            <a class="btn btn-primary" href="#gabung">Bergabung sebagai lembaga nirlaba</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kegiatan" class="section">
+      <div class="container">
+        <h2 class="section-title">Jejak kegiatan</h2>
+        <p class="section-intro">Cuplikan kegiatan belajar bersama siswa di sekolah.</p>
+        <div class="galeri">
+          <figure>
+            <img src="assets/img/workshop.webp" alt="Pemateri memandu workshop robotika di depan spanduk Axioo Mengajar" width="1280" height="662" loading="lazy">
+            <figcaption>Workshop Robotika dan IoT "Axioo Mengajar", 13 Mei 2025</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/siswa-robot.webp" alt="Siswa memprogram robot kecil lewat laptop di ruang kelas" width="1280" height="662" loading="lazy">
+            <figcaption>Siswa belajar robotika</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/kelas.webp" alt="Siswa berseragam duduk di kelas sementara guru menulis di papan tulis" width="1280" height="662" loading="lazy">
+            <figcaption>Pembelajaran di kelas</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/presentasi.webp" alt="Siswa menyimak pemateri yang menjelaskan materi lewat layar proyektor" width="1280" height="662" loading="lazy">
+            <figcaption>Pembelajaran di kelas</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/fokus.webp" alt="Siswa memperhatikan pelajaran dengan laptop dan robot di atas meja" width="1280" height="662" loading="lazy">
+            <figcaption>Siswa belajar robotika</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/kunjungan.webp" alt="Tamu undangan melihat seorang siswi memprogram robot di kelas" width="1600" height="1200" loading="lazy">
+            <figcaption>Kunjungan ke kelas</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="mitra" class="section abu">
+      <div class="container">
+        <h2 class="section-title">Anggota dan mitra</h2>
+        <p class="section-intro">Daftar anggota akan ditampilkan di sini setelah mereka bergabung dan memberi izin.</p>
+        <div class="mitra-grid">
+          <div class="mitra-slot">Logo anggota akan tampil di sini</div>
+          <div class="mitra-slot">Logo anggota akan tampil di sini</div>
+          <div class="mitra-slot">Logo anggota akan tampil di sini</div>
+          <div class="mitra-slot">Logo anggota akan tampil di sini</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gabung" class="section pita on-dark">
+      <div class="container">
+        <h2 class="section-title">Bergabung dengan KITA Indonesia</h2>
+        <p class="section-intro">Sampaikan minat Anda. Tiga langkah menuju kolaborasi.</p>
+        <div class="gabung-grid">
+          <ol class="langkah">
+            <li><strong>Sampaikan minat Anda</strong><span>Ceritakan organisasi Anda dan bidang pendidikan yang ingin didukung.</span></li>
+            <li><strong>Tim KITA menghubungi Anda</strong><span>Kami mengonfirmasi dan membahas bentuk kerja sama.</span></li>
+            <li><strong>Mulai berkolaborasi</strong><span>Bergabung dalam program koalisi bersama anggota lain.</span></li>
+          </ol>
+          <div class="gabung-kanan">
+            <div class="card form-slot" id="form-slot"></div>
+            <div class="card kontak-langsung">
+              <h3>Hubungi kami langsung</h3>
+              <p>Sampaikan minat Anda lewat WhatsApp atau email.</p>
+              <div class="kontak-aksi">
+                <a class="btn btn-primary" href="https://wa.me/">WhatsApp: [ISI nomor]</a>
+                <a class="btn btn-garis" href="mailto:?subject=Minat%20bergabung%20KITA%20Indonesia">Email: [ISI alamat]</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer on-dark" id="kontak">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logo-putih.png" alt="KITA Indonesia" width="512" height="348">
+          <p>Koalisi Industri untuk Talenta anak Bangsa.</p>
+        </div>
+        <div>
+          <h2>Menu</h2>
+          <ul>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#program">Program</a></li>
+            <li><a href="#keanggotaan">Keanggotaan</a></li>
+            <li><a href="#mitra">Mitra</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Kontak</h2>
+          <ul>
+            <li>[ISI] email resmi KITA Indonesia</li>
+            <li>[ISI] nomor WhatsApp resmi</li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-note">&copy; 2026 KITA Indonesia</p>
+    </div>
+  </footer>
+
+  <script>
+    // Menu hamburger: buka/tutup, tutup lagi saat tautan dipilih atau tombol Esc ditekan.
+    (function () {
+      var tombol = document.querySelector('.nav-toggle');
+      var menu = document.getElementById('menu-utama');
+      if (!tombol || !menu) return;
+      function atur(buka) {
+        menu.classList.toggle('open', buka);
+        tombol.setAttribute('aria-expanded', String(buka));
+        tombol.setAttribute('aria-label', buka ? 'Tutup menu' : 'Buka menu');
+      }
+      tombol.addEventListener('click', function () { atur(!menu.classList.contains('open')); });
+      menu.addEventListener('click', function (e) { if (e.target.closest('a')) atur(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('open')) { atur(false); tombol.focus(); } });
+    })();
+
+    // Isi dengan tautan Google Form (versi "embed") untuk menampilkan formulir di halaman.
+    // Selama kosong, pengunjung memakai tombol WhatsApp dan email di bagian Bergabung.
+    const FORM_URL = "";
+
+    function mountForm(url) {
+      var slot = document.getElementById('form-slot');
+      if (!slot || !url) return;
+      var bingkai = document.createElement('iframe');
+      bingkai.src = url;
+      bingkai.title = 'Formulir minat bergabung KITA Indonesia';
+      bingkai.loading = 'lazy';
+      slot.appendChild(bingkai);
+    }
+
+    // Angka naik dari 0 satu kali saat terlihat. Tanpa JavaScript, atau bila pengguna
+    // memilih "kurangi gerakan", angka akhir yang sudah tertulis di HTML tetap dipakai.
+    function animateCounts() {
+      var angka = document.querySelectorAll('[data-count]');
+      var kurangiGerak = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (kurangiGerak || !('IntersectionObserver' in window) || !angka.length) return;
+      var pengamat = new IntersectionObserver(function (entri) {
+        entri.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          pengamat.unobserve(e.target);
+          var el = e.target;
+          var akhir = Number(el.getAttribute('data-count'));
+          var mulai = null;
+          function langkah(t) {
+            if (mulai === null) mulai = t;
+            var p = Math.min((t - mulai) / 1400, 1);
+            var nilai = Math.round(akhir * (1 - Math.pow(1 - p, 3)));
+            el.textContent = nilai.toLocaleString('id-ID');
+            if (p < 1) requestAnimationFrame(langkah);
+          }
+          requestAnimationFrame(langkah);
+        });
+      }, { threshold: 0.4 });
+      angka.forEach(function (el) { pengamat.observe(el); });
+    }
+
+    mountForm(FORM_URL);
+    animateCounts();
+  </script>
+</body>
+</html>
